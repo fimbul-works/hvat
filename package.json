@@ -1,7 +1,7 @@
 {
   "name": "@fimbul-works/hvat",
-  "description": "Collection of type guard functions",
-  "version": "1.0.0",
+  "description": "An ultra-lightweight collection of ergonomic TypeScript type guards for runtime type narrowing and defensive validation",
+  "version": "1.0.1",
   "type": "module",
   "private": false,
   "license": "MIT",
@@ -12,9 +12,33 @@
     "url": "git+https://github.com/fimbul-works/hvat.git"
   },
   "bugs": {
-    "url": "https://github.com/fimbul-works/hvatt/issues"
+    "url": "https://github.com/fimbul-works/hvat/issues"
   },
-  "keywords": [],
+  "keywords": [
+    "hvat",
+    "type-guard",
+    "type-guards",
+    "typeguard",
+    "type-predicate",
+    "type-narrowing",
+    "narrowing",
+    "predicate",
+    "predicates",
+    "is-string",
+    "is-number",
+    "is-object",
+    "is-array",
+    "is-function",
+    "is-class",
+    "nullish",
+    "validation",
+    "guard",
+    "guards",
+    "runtime-types",
+    "typescript",
+    "tree-shakeable",
+    "zero-dependencies"
+  ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",

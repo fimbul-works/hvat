@@ -145,17 +145,14 @@ if (isFn(callback)) {
 
 ---
 
----
+## Documentation
 
-## Documenta      ion
-
-For full type si natures and mod le documentation, refer to the generated [API d                  cumentation](docs/API.md).
+For full type signatures and module documentation, refer to the generated [API documentation](docs/API.md).
 
 ## License
 
-MIT License - ee [LICENS                 ](LICENSE) file for details.
+MIT License - See [LICENSE](LICENSE) file for details.
 
 ---
 
 Built with 🔍 by [FimbulWorks](https://github.com/fimbul-works)
-\

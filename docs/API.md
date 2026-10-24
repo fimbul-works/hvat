@@ -8,8 +8,6 @@
 function isArr<T>(v): v is T;
 ```
 
-Defined in: is-arr.ts:7
-
 Check if a value is an array.
 
 #### Type Parameters
@@ -38,8 +36,6 @@ Check if a value is an array.
 function isBool(v): v is boolean;
 ```
 
-Defined in: is-bool.ts:7
-
 Check if a value is a boolean.
 
 #### Parameters
@@ -61,8 +57,6 @@ Check if a value is a boolean.
 ```ts
 function isClass<T>(v, type): v is InstanceType<T>;
 ```
-
-Defined in: is-class.ts:9
 
 Check if a value is an instance of a class.
 
@@ -93,8 +87,6 @@ Check if a value is an instance of a class.
 function isFn<T>(v): v is T;
 ```
 
-Defined in: is-fn.ts:7
-
 Check if a value is a function.
 
 #### Type Parameters
@@ -123,8 +115,6 @@ Check if a value is a function.
 function isNull(v): v is null;
 ```
 
-Defined in: is-null.ts:7
-
 Check if a value is `null`
 
 #### Parameters
@@ -146,8 +136,6 @@ Check if a value is `null`
 ```ts
 function isNullish(v): v is null | undefined;
 ```
-
-Defined in: is-nullish.ts:7
 
 Check if a value is empty (`null`, or `undefined`).
 
@@ -171,8 +159,6 @@ v is null \| undefined
 function isNum(v): v is number;
 ```
 
-Defined in: is-num.ts:7
-
 Check if a value is a number.
 
 #### Parameters
@@ -194,8 +180,6 @@ Check if a value is a number.
 ```ts
 function isObj<T>(v): v is T;
 ```
-
-Defined in: is-obj.ts:10
 
 Check if a value is an object.
 
@@ -225,8 +209,6 @@ Check if a value is an object.
 function isStr<T>(v): v is T;
 ```
 
-Defined in: is-str.ts:7
-
 Check if a value is a string.
 
 #### Type Parameters
@@ -254,8 +236,6 @@ Check if a value is a string.
 ```ts
 function isUndef(v): v is undefined;
 ```
-
-Defined in: is-undef.ts:7
 
 Check if a value is `undefined`.
 
