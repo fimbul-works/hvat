@@ -1,0 +1,59 @@
+{
+  "name": "@fimbul-works/hvat",
+  "description": "Collection of type guard functions",
+  "version": "1.0.0",
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "author": "FimbulWorks <contact@fimbul.works>",
+  "homepage": "https://github.com/fimbul-works/hvat#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fimbul-works/hvat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fimbul-works/hvatt/issues"
+  },
+  "keywords": [],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -rf dist",
+    "clean:bundles": "rm -rf bundles",
+    "build": "pnpm clean && pnpm build:esm && pnpm build:cjs && pnpm build:docs",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
+    "build:bundles": "pnpm clean:bundles && NODE_OPTIONS='--max-old-space-size=4096' tsdown",
+    "build:all": "pnpm build && pnpm build:bundles && pnpm sizes",
+    "build:docs": "typedoc",
+    "format": "npx biome format --write",
+    "test": "vitest",
+    "sizes": "npx bundle-size",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.2",
+    "@fimbul-works/bundle-size": "^2.0.0",
+    "@types/node": "^26.6.5",
+    "tsdown": "^0.22.14",
+    "typedoc": "^0.28.20",
+    "typedoc-plugin-markdown": "^4.14.1",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.12"
+  }
+}
