@@ -107,7 +107,6 @@ if (isObj(data) && isStr(data.id)) {
 ```
 
 > **Note on Generics:** Type parameters like `isObj<T>`, `isArr<T>`, and `isFn<T>` provide compile-time narrowing over verified base structures (e.g. for branded types or known internal contracts). They perform shallow type guards, not deep runtime schema validation.
-````
 
 ### 4. Class Instances
 
@@ -117,7 +116,7 @@ import { isClass } from "@fimbul-works/hvat";
 if (isClass(value, Date)) {
   console.log(value.toISOString()); // value is narrowed to Date
 }
-````
+```
 
 ### 5. Nullish Checks & Filtering
 
