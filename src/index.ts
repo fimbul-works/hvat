@@ -1,7 +1,6 @@
 export * from "./is-arr.js";
 export * from "./is-bool.js";
 export * from "./is-class.js";
-export * from "./is-finite-num.js";
 export * from "./is-fn.js";
 export * from "./is-null.js";
 export * from "./is-nullish.js";

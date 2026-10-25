@@ -81,28 +81,6 @@ Check if a value is an instance of a class.
 
 ***
 
-### isFiniteNum()
-
-```ts
-function isFiniteNum(v): v is number;
-```
-
-Check if a value is a finite number.
-
-#### Parameters
-
-| Parameter | Type | Description |
-| ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
-
-#### Returns
-
-`v is number`
-
-`true` if the value is a finite number, `false` otherwise
-
-***
-
 ### isFn()
 
 ```ts
@@ -284,12 +262,6 @@ Renames and re-exports [isArr](#isarr)
 ### isBoolean
 
 Renames and re-exports [isBool](#isbool)
-
-***
-
-### isFiniteNumber
-
-Renames and re-exports [isFiniteNum](#isfinitenum)
 
 ***
 

@@ -30,4 +30,15 @@ describe("isNum", () => {
       expect(typeof typed).toBe("number");
     }
   });
+
+  it("should handle README.md example", () => {
+    expect(isNum(NaN)).toBe(true);
+    expect(Number.isFinite(NaN)).toBe(false);
+
+    expect(isNum(Infinity)).toBe(true);
+    expect(Number.isFinite(Infinity)).toBe(false);
+
+    expect(Number.isFinite(42)).toBe(true);
+    expect(Number.isFinite(-3.14)).toBe(true);
+  });
 });

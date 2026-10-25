@@ -14,28 +14,25 @@ An ultra-lightweight collection of ergonomic TypeScript type guards for runtime 
 ## Highlights
 
 - **Zero Dependencies & Ultra-Light**: The entire bundle is ~483 B minified (258 B gzipped, 232 B Brotli). Individual tree-shaken guards compile to between 40 B and 100 B minified.
-- **Accurate Type Narrowing**: Leverages TypeScript type predicates to narrow types without manual casting.
-- **Defensive Runtime Semantics**: `isObj` safely excludes `null` and arrays; `isFiniteNum` rejects `NaN` and `±Infinity`; `isClass` narrows to `InstanceType<T>`.
-- **Short Names & Verbose Aliases**: Fast 3-to-5 letter shorthands (`isStr`, `isArr`, `isObj`, `isFn`, `isClass`) alongside full aliases (`isString`, `isArray`, `isObject`, `isFunction`, `isInstanceOf`).
-- **Dual Export**: Dual ESM and CommonJS support with bundled `.d.ts` declaration files.
+- **Accurate Type Narrowing**: Leverages TypeScript type predicates to narrow types without manual casting; `isObj` safely excludes `null` and arrays; `isClass` narrows to `InstanceType<T>`.
+- **Short Names & Verbose Aliases**: Fast letter shorthands (`isStr`, `isArr`, `isObj`, `isFn`, `isClass`) alongside full aliases (`isString`, `isArray`, `isObject`, `isFunction`, `isInstanceOf`).
 
 ---
 
 ## Available Guards
 
-| Guard              | Alias            | Type Predicate           | Matches                                                 | Rejects                                       |
-| :----------------- | :--------------- | :----------------------- | :------------------------------------------------------ | :-------------------------------------------- |
-| `isStr(v)`         | `isString`       | `v is string`            | String primitives                                       | Non-strings                                   |
-| `isNum(v)`         | `isNumber`       | `v is number`            | Number primitives (including `NaN`, `±Infinity`)        | Non-numbers                                   |
-| `isFiniteNum(v)`   | `isFiniteNumber` | `v is number`            | Finite numbers (e.g. `0`, `-3.14`, `42`)                | `NaN`, `±Infinity`, non-numbers               |
-| `isBool(v)`        | `isBoolean`      | `v is boolean`           | Boolean primitives (`true`, `false`)                    | Non-booleans                                  |
-| `isArr<T>(v)`      | `isArray`        | `v is T`                 | Array instances (`Array.isArray`)                       | Objects, iterables, primitives                |
-| `isObj<T>(v)`      | `isObject`       | `v is T`                 | Non-null, non-array objects (including class instances) | `null`, arrays, primitives                    |
-| `isClass(v, type)` | `isInstanceOf`   | `v is InstanceType<T>`   | Instances of the specified class constructor            | Non-instances, primitives                     |
-| `isFn<T>(v)`       | `isFunction`     | `v is T`                 | Functions, arrow functions, constructors                | Non-functions                                 |
-| `isNull(v)`        | —                | `v is null`              | Exactly `null`                                          | Everything else                               |
-| `isUndef(v)`       | `isUndefined`    | `v is undefined`         | Exactly `undefined`                                     | Everything else                               |
-| `isNullish(v)`     | —                | `v is null \| undefined` | `null` or `undefined`                                   | Falsy non-nullish values (`0`, `""`, `false`) |
+| Guard              | Alias          | Type Predicate           | Matches                                                 | Rejects                                       |
+| :----------------- | :------------- | :----------------------- | :------------------------------------------------------ | :-------------------------------------------- |
+| `isStr(v)`         | `isString`     | `v is string`            | String primitives                                       | Non-strings                                   |
+| `isNum(v)`         | `isNumber`     | `v is number`            | Number primitives (including `NaN`, `±Infinity`)        | Non-numbers                                   |
+| `isBool(v)`        | `isBoolean`    | `v is boolean`           | Boolean primitives (`true`, `false`)                    | Non-booleans                                  |
+| `isArr<T>(v)`      | `isArray`      | `v is T`                 | Array instances (`Array.isArray`)                       | Objects, iterables, primitives                |
+| `isObj<T>(v)`      | `isObject`     | `v is T`                 | Non-null, non-array objects (including class instances) | `null`, arrays, primitives                    |
+| `isClass(v, type)` | `isInstanceOf` | `v is InstanceType<T>`   | Instances of the specified class constructor            | Non-instances, primitives                     |
+| `isFn<T>(v)`       | `isFunction`   | `v is T`                 | Functions, arrow functions, constructors                | Non-functions                                 |
+| `isNull(v)`        | —              | `v is null`              | Exactly `null`                                          | Everything else                               |
+| `isUndef(v)`       | `isUndefined`  | `v is undefined`         | Exactly `undefined`                                     | Everything else                               |
+| `isNullish(v)`     | —              | `v is null \| undefined` | `null` or `undefined`                                   | Falsy non-nullish values (`0`, `""`, `false`) |
 
 ---
 
@@ -68,25 +65,26 @@ function format(value: unknown) {
 }
 ```
 
-### 2. Finite Numbers vs. NaN & Infinities
+### 2. Numbers vs. NaN & Infinities
 
 ```typescript
-import { isFiniteNum, isNum } from "@fimbul-works/hvat";
+import { isNum } from "@fimbul-works/hvat";
 
+// JavaScript has a built-in isFinite function
 isNum(NaN); // true
-isFiniteNum(NaN); // false
+Number.isFinite(NaN); // false
 
 isNum(Infinity); // true
-isFiniteNum(Infinity); // false
+Number.isFinite(Infinity); // false
 
-isFiniteNum(42); // true
-isFiniteNum(-3.14); // true
+isFinite(42); // true
+Number.isFinite(-3.14); // true
 ```
 
 ### 3. Objects & Arrays
 
 ```typescript
-import { isArr, isObj, isStr } from "@fimbul-works/hvat";
+import { isArr, isObj } from "@fimbul-works/hvat";
 
 // In JS, typeof null === "object" and typeof [] === "object".
 // isObj safely excludes both:
