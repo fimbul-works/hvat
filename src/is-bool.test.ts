@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isBool } from "./is-bool";
+import { isBool, isBoolean } from "./is-bool";
 
 describe("isBool", () => {
   it("should return true for boolean primitives", () => {
@@ -24,5 +24,9 @@ describe("isBool", () => {
       const typed = value;
       expect(typeof typed).toBe("boolean");
     }
+  });
+
+  it("should work with alias isBoolean", () => {
+    expect(isBool).toBe(isBoolean);
   });
 });

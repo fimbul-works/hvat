@@ -1,7 +1,7 @@
 {
   "name": "@fimbul-works/hvat",
   "description": "An ultra-lightweight collection of ergonomic TypeScript type guards for runtime type narrowing and defensive validation",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "type": "module",
   "private": false,
   "license": "MIT",
@@ -30,6 +30,7 @@
     "is-array",
     "is-function",
     "is-class",
+    "is-iterable",
     "nullish",
     "validation",
     "guard",

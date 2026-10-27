@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isFn } from "./is-fn";
+import { isFn, isFunction } from "./is-fn";
 
 describe("isFn", () => {
   it("should return true for functions", () => {
@@ -32,5 +32,9 @@ describe("isFn", () => {
       const typed = value;
       expect(typeof typed).toBe("function");
     }
+  });
+
+  it("should work with alias isFunction", () => {
+    expect(isFn).toBe(isFunction);
   });
 });

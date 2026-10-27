@@ -34,17 +34,12 @@ describe("isClass", () => {
   });
 
   it("should return false for primitives and plain objects", () => {
-    expect(isClass("string", String as any)).toBe(false);
-    expect(isClass(42, Number as any)).toBe(false);
-    expect(isClass(true, Boolean as any)).toBe(false);
+    expect(isClass("string", String)).toBe(false);
+    expect(isClass(42, Number)).toBe(false);
+    expect(isClass(true, Boolean)).toBe(false);
     expect(isClass({}, Person)).toBe(false);
     expect(isClass(null, Person)).toBe(false);
     expect(isClass(undefined, Person)).toBe(false);
-  });
-
-  it("should work with alias isInstanceOf", () => {
-    expect(isInstanceOf(new Date(), Date)).toBe(true);
-    expect(isInstanceOf({}, Date)).toBe(false);
   });
 
   it("should narrow type correctly to instance", () => {
@@ -57,5 +52,9 @@ describe("isClass", () => {
     if (isClass(d, Date)) {
       expect(d.getTime()).toBeTypeOf("number");
     }
+  });
+
+  it("should work with alias isInstanceOf", () => {
+    expect(isClass).toBe(isInstanceOf);
   });
 });

@@ -1,7 +1,8 @@
 /**
- * Check if a value is empty (`null`, or `undefined`).
+ * Check if a value is nullish (`null` or `undefined`).
  *
- * @param {unknown} v - Value to check
- * @returns {boolean} `true` if the value is empty, `false` otherwise
+ * @template T Type of nullish value.
+ * @param v - Value to check.
+ * @returns `true` if the value is nullish, `false` otherwise.
  */
-export const isNullish = (v: unknown): v is null | undefined => v === null || typeof v === "undefined";
+export const isNullish = <T extends null | undefined>(v: any): v is T => v === null || v === undefined;

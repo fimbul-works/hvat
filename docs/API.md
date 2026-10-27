@@ -5,50 +5,56 @@
 ### isArr()
 
 ```ts
-function isArr<T>(v): v is T;
+function isArr<T>(v): v is T[];
 ```
 
 Check if a value is an array.
 
 #### Type Parameters
 
-| Type Parameter |
-| ------ |
-| <a id="type-parameter-t"></a> `T` *extends* `unknown`[] |
+| Type Parameter | Description |
+| ------ | ------ |
+| <a id="type-parameter-t"></a> `T` | Type of array item. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
-`v is T`
+`v is T[]`
 
-`true` if the value is an array, `false` otherwise
+`true` if the value is an array, `false` otherwise.
 
 ***
 
 ### isBool()
 
 ```ts
-function isBool(v): v is boolean;
+function isBool<T>(v): v is T;
 ```
 
-Check if a value is a boolean.
+Check if a value is a primitive type boolean.
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| <a id="type-parameter-t-1"></a> `T` *extends* `boolean` | Type of boolean. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
-`v is boolean`
+`v is T`
 
-`true` if the value is a boolean, `false` otherwise
+`true` if the value is a boolean, `false` otherwise.
 
 ***
 
@@ -64,20 +70,20 @@ Check if a value is an instance of a class.
 
 | Type Parameter | Description |
 | ------ | ------ |
-| <a id="type-parameter-t-1"></a> `T` *extends* new (...`args`) => `any` |  |
+| <a id="type-parameter-t-2"></a> `T` *extends* new (...`args`) => `any` | Type of constructor. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
-| `type` | `T` | Class to check against |
+| `v` | `any` | Value to check. |
+| `type` | `T` | Constructor to check against. |
 
 #### Returns
 
 `v is InstanceType<T>`
 
-`true` if the value is an instance of a class, `false` otherwise
+`true` if the value is an instance of type, `false` otherwise.
 
 ***
 
@@ -91,21 +97,21 @@ Check if a value is a function.
 
 #### Type Parameters
 
-| Type Parameter |
-| ------ |
-| <a id="type-parameter-t-2"></a> `T` *extends* (...`args`) => `any` |
+| Type Parameter | Description |
+| ------ | ------ |
+| <a id="type-parameter-t-3"></a> `T` *extends* (...`args`) => `any` | Type of function. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
 `v is T`
 
-`true` if the value is a function, `false` otherwise
+`true` if the value is a function, `false` otherwise.
 
 ***
 
@@ -115,63 +121,75 @@ Check if a value is a function.
 function isNull(v): v is null;
 ```
 
-Check if a value is `null`
+Check if a value is `null`.
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
 `v is null`
 
-`true` if the value is `null`, `false` otherwise
+`true` if the value is `null`, `false` otherwise.
 
 ***
 
 ### isNullish()
 
 ```ts
-function isNullish(v): v is null | undefined;
+function isNullish<T>(v): v is T;
 ```
 
-Check if a value is empty (`null`, or `undefined`).
+Check if a value is nullish (`null` or `undefined`).
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| <a id="type-parameter-t-4"></a> `T` *extends* `null` \| `undefined` | Type of nullish value. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
-v is null \| undefined
+`v is T`
 
-`true` if the value is empty, `false` otherwise
+`true` if the value is nullish, `false` otherwise.
 
 ***
 
 ### isNum()
 
 ```ts
-function isNum(v): v is number;
+function isNum<T>(v): v is T;
 ```
 
-Check if a value is a number.
+Check if a value is a primitive type number.
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| <a id="type-parameter-t-5"></a> `T` *extends* `number` | Type of number. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
-`v is number`
+`v is T`
 
-`true` if the value is a number, `false` otherwise
+`true` if the value is a number, `false` otherwise.
 
 ***
 
@@ -187,19 +205,19 @@ Check if a value is an object.
 
 | Type Parameter | Description |
 | ------ | ------ |
-| <a id="type-parameter-t-3"></a> `T` *extends* `object` | Type of the object |
+| <a id="type-parameter-t-6"></a> `T` *extends* `object` | Type of object. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
 `v is T`
 
-`true` if the value is an object, `false` otherwise
+`true` if the value is an object, `false` otherwise.
 
 ***
 
@@ -209,25 +227,25 @@ Check if a value is an object.
 function isStr<T>(v): v is T;
 ```
 
-Check if a value is a string.
+Check if a value is a primitive type string.
 
 #### Type Parameters
 
-| Type Parameter |
-| ------ |
-| <a id="type-parameter-t-4"></a> `T` *extends* `string` |
+| Type Parameter | Description |
+| ------ | ------ |
+| <a id="type-parameter-t-7"></a> `T` *extends* `string` | Type of string. |
 
 #### Parameters
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `unknown` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
 `v is T`
 
-`true` if the value is a string, `false` otherwise
+`true` if the value is a string, `false` otherwise.
 
 ***
 
@@ -243,13 +261,13 @@ Check if a value is `undefined`.
 
 | Parameter | Type | Description |
 | ------ | ------ | ------ |
-| `v` | `any` | Value to check |
+| `v` | `any` | Value to check. |
 
 #### Returns
 
 `v is undefined`
 
-`true` if the value is `undefined`, `false` otherwise
+`true` if the value is `undefined`, `false` otherwise.
 
 ## References
 

@@ -1,15 +1,19 @@
 import { describe, expect, it } from "vitest";
-import { isArray } from "./is-arr";
+import { isArr, isArray } from "./is-arr";
 
-describe("isArray", () => {
+describe("isArr", () => {
   it("should return true for arrays", () => {
-    expect(isArray([])).toBe(true);
-    expect(isArray([1, 2, 3])).toBe(true);
+    expect(isArr([])).toBe(true);
+    expect(isArr([1, 2, 3])).toBe(true);
   });
 
   it("should return false for non-arrays", () => {
-    expect(isArray({})).toBe(false);
-    expect(isArray(null)).toBe(false);
-    expect(isArray(undefined)).toBe(false);
+    expect(isArr({})).toBe(false);
+    expect(isArr(null)).toBe(false);
+    expect(isArr(undefined)).toBe(false);
+  });
+
+  it("should work with alias isArray", () => {
+    expect(isArr).toBe(isArray);
   });
 });

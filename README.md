@@ -15,7 +15,7 @@ An ultra-lightweight collection of ergonomic TypeScript type guards for runtime 
 
 - **Zero Dependencies & Ultra-Light**: The entire bundle is ~483 B minified (258 B gzipped, 232 B Brotli). Individual tree-shaken guards compile to between 40 B and 100 B minified.
 - **Accurate Type Narrowing**: Leverages TypeScript type predicates to narrow types without manual casting; `isObj` safely excludes `null` and arrays; `isClass` narrows to `InstanceType<T>`.
-- **Short Names & Verbose Aliases**: Fast letter shorthands (`isStr`, `isArr`, `isObj`, `isFn`, `isClass`) alongside full aliases (`isString`, `isArray`, `isObject`, `isFunction`, `isInstanceOf`).
+- **Short Names & Verbose Aliases**: Fast letter shorthands (`isStr`, `isArr`, `isObj`, `isFn`, `isClass`, `isIter`) alongside full aliases (`isString`, `isArray`, `isObject`, `isFunction`, `isInstanceOf`, `isIterable`).
 
 ---
 
@@ -30,6 +30,7 @@ An ultra-lightweight collection of ergonomic TypeScript type guards for runtime 
 | `isObj<T>(v)`      | `isObject`     | `v is T`                 | Non-null, non-array objects (including class instances) | `null`, arrays, primitives                    |
 | `isClass(v, type)` | `isInstanceOf` | `v is InstanceType<T>`   | Instances of the specified class constructor            | Non-instances, primitives                     |
 | `isFn<T>(v)`       | `isFunction`   | `v is T`                 | Functions, arrow functions, constructors                | Non-functions                                 |
+| `isIter<T>(v)`     | `isIterable`   | `v is T`                 | Iterators (containing `Symbol.iterator`)                | Everything else                               |
 | `isNull(v)`        | —              | `v is null`              | Exactly `null`                                          | Everything else                               |
 | `isUndef(v)`       | `isUndefined`  | `v is undefined`         | Exactly `undefined`                                     | Everything else                               |
 | `isNullish(v)`     | —              | `v is null \| undefined` | `null` or `undefined`                                   | Falsy non-nullish values (`0`, `""`, `false`) |
@@ -137,6 +138,18 @@ import { isFn } from "@fimbul-works/hvat";
 
 if (isFn(callback)) {
   callback();
+}
+```
+
+### 7. Iterators
+
+```typescript
+import { isIter } from "@fimbul-works/hvat";
+
+if (isIter(value)) {
+  for (const item of value) {
+    console.log(item);
+  }
 }
 ```
 
