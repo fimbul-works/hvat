@@ -13,7 +13,7 @@ An ultra-lightweight collection of ergonomic TypeScript type guards for runtime 
 
 ## Highlights
 
-- **Zero Dependencies & Ultra-Light**: The entire bundle is ~483 B minified (258 B gzipped, 232 B Brotli). Individual tree-shaken guards compile to between 40 B and 100 B minified.
+- **Zero Dependencies & Ultra-Light**: The entire bundle is <1KB minified, and individual tree-shaken guards compile to bytes.
 - **Accurate Type Narrowing**: Leverages TypeScript type predicates to narrow types without manual casting; `isObj` safely excludes `null` and arrays; `isClass` narrows to `InstanceType<T>`.
 - **Short Names & Verbose Aliases**: Fast letter shorthands (`isStr`, `isArr`, `isObj`, `isFn`, `isClass`, `isIter`) alongside full aliases (`isString`, `isArray`, `isObject`, `isFunction`, `isInstanceOf`, `isIterable`).
 
