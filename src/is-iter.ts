@@ -1,5 +1,5 @@
-import { isFn } from "./is-fn";
-import { isNullish } from "./is-nullish";
+import { isFn } from "./is-fn.js";
+import { isNullish } from "./is-nullish.js";
 
 /**
  * Check if a value is iterable.
