@@ -87,6 +87,56 @@ Check if a value is an instance of a class.
 
 ***
 
+### isConstructor()
+
+```ts
+function isConstructor<T>(v): v is T;
+```
+
+Check if a value is a class constructor.
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| <a id="type-parameter-t-3"></a> `T` *extends* new (...`args`) => `any` | Type of constructor. |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `v` | `any` | Value to check. |
+
+#### Returns
+
+`v is T`
+
+`true` if the value is a class construcor, `false` otherwise.
+
+***
+
+### isFalsy()
+
+```ts
+function isFalsy(v): v is false;
+```
+
+Check if a value is falsy.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `v` | `any` | Value to check. |
+
+#### Returns
+
+`v is false`
+
+`true` if value is truthy, `false` otherwise.
+
+***
+
 ### isFn()
 
 ```ts
@@ -99,7 +149,7 @@ Check if a value is a function.
 
 | Type Parameter | Description |
 | ------ | ------ |
-| <a id="type-parameter-t-3"></a> `T` *extends* (...`args`) => `any` | Type of function. |
+| <a id="type-parameter-t-4"></a> `T` *extends* (...`args`) => `any` | Type of function. |
 
 #### Parameters
 
@@ -112,6 +162,34 @@ Check if a value is a function.
 `v is T`
 
 `true` if the value is a function, `false` otherwise.
+
+***
+
+### isIter()
+
+```ts
+function isIter<T>(v): v is T;
+```
+
+Check if a value is iterable.
+
+#### Type Parameters
+
+| Type Parameter | Description |
+| ------ | ------ |
+| <a id="type-parameter-t-5"></a> `T` *extends* `Iterable`\<`T`, `any`, `any`\> | Type of iterable. |
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `v` | `any` | Value to check. |
+
+#### Returns
+
+`v is T`
+
+`true` if the value is iterable, `false` otherwise.
 
 ***
 
@@ -149,7 +227,7 @@ Check if a value is nullish (`null` or `undefined`).
 
 | Type Parameter | Description |
 | ------ | ------ |
-| <a id="type-parameter-t-4"></a> `T` *extends* `null` \| `undefined` | Type of nullish value. |
+| <a id="type-parameter-t-6"></a> `T` *extends* `null` \| `undefined` | Type of nullish value. |
 
 #### Parameters
 
@@ -177,7 +255,7 @@ Check if a value is a primitive type number.
 
 | Type Parameter | Description |
 | ------ | ------ |
-| <a id="type-parameter-t-5"></a> `T` *extends* `number` | Type of number. |
+| <a id="type-parameter-t-7"></a> `T` *extends* `number` | Type of number. |
 
 #### Parameters
 
@@ -205,7 +283,7 @@ Check if a value is an object.
 
 | Type Parameter | Description |
 | ------ | ------ |
-| <a id="type-parameter-t-6"></a> `T` *extends* `object` | Type of object. |
+| <a id="type-parameter-t-8"></a> `T` *extends* `object` | Type of object. |
 
 #### Parameters
 
@@ -233,7 +311,7 @@ Check if a value is a primitive type string.
 
 | Type Parameter | Description |
 | ------ | ------ |
-| <a id="type-parameter-t-7"></a> `T` *extends* `string` | Type of string. |
+| <a id="type-parameter-t-9"></a> `T` *extends* `string` | Type of string. |
 
 #### Parameters
 
@@ -246,6 +324,28 @@ Check if a value is a primitive type string.
 `v is T`
 
 `true` if the value is a string, `false` otherwise.
+
+***
+
+### isTruthy()
+
+```ts
+function isTruthy(v): v is true;
+```
+
+Check if a value is truthy.
+
+#### Parameters
+
+| Parameter | Type | Description |
+| ------ | ------ | ------ |
+| `v` | `any` | Value to check. |
+
+#### Returns
+
+`v is true`
+
+`true` if value is truthy, `false` otherwise.
 
 ***
 
@@ -292,6 +392,12 @@ Renames and re-exports [isFn](#isfn)
 ### isInstanceOf
 
 Renames and re-exports [isClass](#isclass)
+
+***
+
+### isIterable
+
+Renames and re-exports [isIter](#isiter)
 
 ***
 

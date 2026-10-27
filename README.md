@@ -21,19 +21,24 @@ An ultra-lightweight collection of ergonomic TypeScript type guards for runtime 
 
 ## Available Guards
 
-| Guard              | Alias          | Type Predicate           | Matches                                                 | Rejects                                       |
-| :----------------- | :------------- | :----------------------- | :------------------------------------------------------ | :-------------------------------------------- |
-| `isStr(v)`         | `isString`     | `v is string`            | String primitives                                       | Non-strings                                   |
-| `isNum(v)`         | `isNumber`     | `v is number`            | Number primitives (including `NaN`, `±Infinity`)        | Non-numbers                                   |
-| `isBool(v)`        | `isBoolean`    | `v is boolean`           | Boolean primitives (`true`, `false`)                    | Non-booleans                                  |
-| `isArr<T>(v)`      | `isArray`      | `v is T`                 | Array instances (`Array.isArray`)                       | Objects, iterables, primitives                |
-| `isObj<T>(v)`      | `isObject`     | `v is T`                 | Non-null, non-array objects (including class instances) | `null`, arrays, primitives                    |
-| `isClass(v, type)` | `isInstanceOf` | `v is InstanceType<T>`   | Instances of the specified class constructor            | Non-instances, primitives                     |
-| `isFn<T>(v)`       | `isFunction`   | `v is T`                 | Functions, arrow functions, constructors                | Non-functions                                 |
-| `isIter<T>(v)`     | `isIterable`   | `v is T`                 | Iterators (containing `Symbol.iterator`)                | Everything else                               |
-| `isNull(v)`        | —              | `v is null`              | Exactly `null`                                          | Everything else                               |
-| `isUndef(v)`       | `isUndefined`  | `v is undefined`         | Exactly `undefined`                                     | Everything else                               |
-| `isNullish(v)`     | —              | `v is null \| undefined` | `null` or `undefined`                                   | Falsy non-nullish values (`0`, `""`, `false`) |
+| Guard                 | Alias          | Type Predicate                     | Matches                                                 |
+| :-------------------- | :------------- | :--------------------------------- | :------------------------------------------------------ |
+| `isArr<T>(v)`         | `isArray`      | `v is T[]`                         | Array instances (`Array.isArray`)                       |
+| `isBool<T>(v)`        | `isBoolean`    | `v is boolean`                     | Boolean primitives (`true`, `false`)                    |
+| `isClass<T>(v, type)` | `isInstanceOf` | `v is InstanceType<T>`             | Instances of the specified class constructor            |
+| `isConstructor<T>(v)` | -              | `v is new (...args: any[]) => any` | Class constructors                                      |
+| `isFn<T>(v)`          | `isFunction`   | `v is (...args: any[]) => any`     | Functions, arrow functions, constructors                |
+| `isNum<T>(v)`         | `isNumber`     | `v is number`                      | Number primitives (including `NaN`, `±Infinity`)        |
+| `isIter<T>(v)`        | `isIterable`   | `v is Iterable`                    | Iterators (containing `Symbol.iterator`)                |
+| `isObj<T>(v)`         | `isObject`     | `v is object`                      | Non-null, non-array objects (including class instances) |
+| `isStr<T>(v)`         | `isString`     | `v is string`                      | String primitives                                       |
+| `isNullish<T>(v)`     | —              | `v is null \| undefined`           | `null` or `undefined`                                   |
+| `isNull(v)`           | —              | `v is null`                        | Exactly `null`                                          |
+| `isUndef(v)`          | `isUndefined`  | `v is undefined`                   | Exactly `undefined`                                     |
+| `isTruthy(v)`         | —              | `v is true`                        | Truthy values (`!!v`)                                   |
+| `isFalsy(v)`          | —              | `v is true`                        | Falsy values (`!v`)                                     |
+
+> **Note on Generics:** Type parameters like `isObj<T>`, `isArr<T>`, and `isFn<T>` provide compile-time narrowing over verified base structures (e.g. for branded types or known internal contracts). They perform shallow type guards, not deep runtime schema validation.
 
 ---
 
@@ -105,30 +110,34 @@ if (isObj(data) && isStr(data.id)) {
 }
 ```
 
-> **Note on Generics:** Type parameters like `isObj<T>`, `isArr<T>`, and `isFn<T>` provide compile-time narrowing over verified base structures (e.g. for branded types or known internal contracts). They perform shallow type guards, not deep runtime schema validation.
-
-### 4. Class Instances
+### 4. Class Instances & Constructors
 
 ```typescript
-import { isClass } from "@fimbul-works/hvat";
+import { isClass, isConstructor } from "@fimbul-works/hvat";
 
 if (isClass(value, Date)) {
   console.log(value.toISOString()); // value is narrowed to Date
 }
+
+isConstructor(Date); // true
+isConstructor(() => {}); // false
 ```
 
 ### 5. Nullish Checks & Filtering
 
 ```typescript
-import { isNullish, isStr } from "@fimbul-works/hvat";
+import { isNullish, isStr, isTruthy } from "@fimbul-works/hvat";
 
-const items: (string | null | undefined)[] = ["a", null, "b", undefined];
+const items: (string | null | undefined)[] = ["a", null, "b", undefined, "", 0];
 
 // Narrow to string[]:
-const strings: string[] = items.filter(isStr); // ["a", "b"]
+const strings: string[] = items.filter(isStr); // ["a", "b", ""]
 
 // Filter nullish:
 const present = items.filter((v): v is string => !isNullish(v));
+
+// Filter falsy:
+const truthy = items.filter(isTruthy); // ["a", "b"]
 ```
 
 ### 6. Functions
@@ -141,7 +150,7 @@ if (isFn(callback)) {
 }
 ```
 
-### 7. Iterators
+### 7. Iterators & Iterable
 
 ```typescript
 import { isIter } from "@fimbul-works/hvat";
